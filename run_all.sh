@@ -21,6 +21,8 @@ done < result.txt
 
 average=$((sum/count))
 
+echo $sum
+echo $count
 echo $average
 
 
