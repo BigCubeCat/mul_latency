@@ -14,7 +14,9 @@ unsigned long long func(int a, int b) {
   asm("rdtsc\n" : "=a"(begin.t32.th), "=d"(begin.t32.tl));
   a = a * b;
   asm("rdtsc\n" : "=a"(end.t32.th), "=d"(end.t32.tl));
-  printf("%d\n", a);
+  if (a == 0) {
+    return (end.t64 - begin.t64) / N;
+  }
   return (end.t64 - begin.t64) / N;
 }
 
