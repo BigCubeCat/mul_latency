@@ -12,10 +12,8 @@ sum=0
 count=0
 
 while read num; do
-  if ((num < 100)); then
     sum=$((sum+num))
     count=$((count+1))
-  fi
 done < result.txt
 
 
