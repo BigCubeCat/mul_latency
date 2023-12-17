@@ -10,11 +10,7 @@ union ticks {
   } t32;
 } begin, end;
 
-unsigned long long func() {
-  int a;
-  int b;
-  scanf("%d", &a);
-  scanf("%d", &b);
+unsigned long long func(int a, int b) {
   asm("rdtsc\n" : "=a"(begin.t32.th), "=d"(begin.t32.tl));
   a = a * b;
   asm("rdtsc\n" : "=a"(end.t32.th), "=d"(end.t32.tl));
@@ -22,4 +18,19 @@ unsigned long long func() {
   return (end.t64 - begin.t64) / N;
 }
 
-int main() { printf("%lld\n", func()); }
+int writeResult(unsigned long long result) {
+  FILE *file = fopen("myfile2.txt", "a");
+  fprintf(file, "%lld", result);
+  fclose(file);
+  return 0;
+}
+
+int main(int argc, char *argv[]) {
+  if (argc <= 2) {
+    printf("No args\n");
+    exit(1);
+  }
+  int a = atoi(argv[1]);
+  int b = atoi(argv[2]);
+  writeResult(func(a, b));
+}
