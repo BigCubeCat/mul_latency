@@ -1,15 +1,26 @@
 #!/bin/bash
 
-./main.py 10000
+./main.py $2
 gcc -O1 main.c -o exe
 
-COUNT_RUNS=10
-
-for ((j=1; j < COUNT_RUNS; j++))
+for ((j=1; j < $1; j++))
 do
-  for ((i=1; i < COUNT_RUNS; i++))
+  for ((i=1; i < $1; i++))
   do
     ./exe i j
   done
 done
+
+sum=0
+count=0
+
+while read num; do
+  sum=$((sum+num))
+  count=$((count+1))
+done < result.txt
+
+average=$((sum/count))
+
+echo $average
+
 
