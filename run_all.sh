@@ -15,8 +15,10 @@ sum=0
 count=0
 
 while read num; do
-  sum=$((sum+num))
-  count=$((count+1))
+  if ((num < 100)); then
+    sum=$((sum+num))
+    count=$((count+1))
+  fi
 done < result.txt
 
 average=$((sum/count))
@@ -24,5 +26,4 @@ average=$((sum/count))
 echo $sum
 echo $count
 echo $average
-
 
