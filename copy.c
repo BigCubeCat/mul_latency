@@ -19,8 +19,8 @@ unsigned long long func(int a, int b) {
 }
 
 int writeResult(unsigned long long result) {
-  FILE *file = fopen("myfile2.txt", "a");
-  fprintf(file, "%lld", result);
+  FILE *file = fopen("result.txt", "a");
+  fprintf(file, "%lld\n", result);
   fclose(file);
   return 0;
 }
