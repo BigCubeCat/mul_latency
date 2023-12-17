@@ -5,10 +5,7 @@ gcc -O1 main.c -o exe
 
 for ((j=1; j < $1; j++))
 do
-  for ((i=1; i < $1; i++))
-  do
-    ./exe i j
-  done
+  ./exe 123 321
 done
 
 sum=0
@@ -21,9 +18,8 @@ while read num; do
   fi
 done < result.txt
 
-average=$((sum/count))
 
 echo $sum
 echo $count
-echo $average
+echo $(echo "scale=2; $sum/$count" | bc)
 
